@@ -28,10 +28,7 @@ pipeline {
         '''
     }
   }
-  triggers {
-    // poll repo every 1 minute for changes
-    pollSCM('*/1 * * * *')
-  }
+  
   stages {
     stage('Execute on Jenkins agent') {
       steps {
