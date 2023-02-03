@@ -29,7 +29,7 @@ pipeline {
     }
   }
   triggers {
-    // poll repo every 1 minute for changes
+    // Build based on Github push
     githubPush()
   }
   stages {
