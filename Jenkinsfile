@@ -28,14 +28,17 @@ pipeline {
         '''
     }
   }
-  
+  triggers {
+    // poll repo every 1 minute for changes
+    githubPush()
+  }
   stages {
     stage('Execute on Jenkins agent') {
       steps {
         container('jenkins-agent-container') {
           sh '''#!/bin/bash
           make run
-          make fill-db
+          make
           '''
         }
       }
