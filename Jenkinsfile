@@ -38,7 +38,7 @@ pipeline {
         container('jenkins-agent-container') {
           sh '''#!/bin/bash
           make run
-          make
+          make fill-db
           '''
         }
       }
