@@ -1,31 +1,30 @@
-
-
-
+kapply = kubectl apply -f yamlfiles/
+kdelete = kubectl delete -f yamlfiles/
 
 run:
-	@kubectl apply -f yamlfiles/back-service.yaml
-	@kubectl apply -f yamlfiles/front-service.yaml
-	@kubectl apply -f yamlfiles/back-deployment.yaml
-	@kubectl apply -f yamlfiles/front-deployment.yaml
-	@kubectl apply -f yamlfiles/data-deployment.yaml
-	@kubectl apply -f yamlfiles/data-script-job.yaml
-	@kubectl apply -f yamlfiles/myapp-networkpolicy.yaml
-	@kubectl apply -f yamlfiles/secret.yaml
-	@kubectl apply -f yamlfiles/storageClass.yaml
-	@kubectl apply -f yamlfiles/data-pvc.yaml
+	@$(kapply)back-service.yaml
+	@$(kapply)front-service.yaml
+	@$(kapply)back-deployment.yaml
+	@$(kapply)front-deployment.yaml
+	@$(kapply)data-deployment.yaml
+	@$(kapply)data-script-job.yaml
+	@$(kapply)myapp-networkpolicy.yaml
+	@$(kapply)secret.yaml
+	@$(kapply)storageClass.yaml
+	@$(kapply)data-pvc.yaml
 
 fill-db:
-	@kubectl apply -f yamlfiles/data-service.yaml
+	@$(kapply)data-service.yaml
 
 stop:
-	@kubectl delete -f yamlfiles/back-service.yaml
-	@kubectl delete -f yamlfiles/front-service.yaml
-	@kubectl delete -f yamlfiles/data-service.yaml
-	@kubectl delete -f yamlfiles/back-deployment.yaml
-	@kubectl delete -f yamlfiles/front-deployment.yaml
-	@kubectl delete -f yamlfiles/data-deployment.yaml
-	@kubectl delete -f yamlfiles/data-script-job.yaml
-	@kubectl delete -f yamlfiles/myapp-networkpolicy.yaml
-	@kubectl delete -f yamlfiles/secret.yam
+	@$(kdelete)back-service.yaml
+	@$(kdelete)front-service.yaml
+	@$(kdelete)data-service.yaml
+	@$(kdelete)back-deployment.yaml
+	@$(kdelete)front-deployment.yaml
+	@$(kdelete)data-deployment.yaml
+	@$(kdelete)data-script-job.yaml
+	@$(kdelete)myapp-networkpolicy.yaml
+	@$(kdelete)secret.yaml
 clean:
-	@kubectl delete -f yamlfiles/data-pvc.yaml
+	@$(kdelete)data-pvc.yaml
